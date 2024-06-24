@@ -1,0 +1,59 @@
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    ports:
+      - "9090:9090"
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    depends_on:
+      - prometheus
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin!
+    configs:
+      - source: dashboard_config
+        target: /etc/grafana/provisioning/dashboards/default.yaml
+      - source: datasource_config
+        target: /etc/grafana/provisioning/datasources/datasource.yaml
+      - source: dash_default
+        target: /etc/grafana/provisioning/dashboards/json/hs_fs_dash.json    
+      - source: dash_mobility
+        target: /etc/grafana/provitioning/dashboards/json/hs_file_mobility.json
+      - source: dash_object
+        target: /etc/grafana/provisioning/dashboards/json/hs_object.json
+      - source: dash_protocol 
+        target: /etc/grafana/provisioning/dashboards/json/hs_protocol.json
+    restart: unless-stopped
+
+configs:
+  dashboard_config:
+    file: ./grafana/default.yaml
+  datasource_config:
+    file: ./grafana/datasources/datasource.yaml
+  dash_default:
+    file: ./grafana/dashboards/hs_fs_dash.json
+  dash_mobility:
+    file: ./grafana/dashboards/hs_file_mobility.json
+  dash_object:
+    file: ./grafana/dashboards/hs_object.json
+  dash_protocol:
+    file: ./grafana/dashboards/hs_protocol.json
+
+
+volumes:
+  prometheus_data:
+  grafana_data:
+
