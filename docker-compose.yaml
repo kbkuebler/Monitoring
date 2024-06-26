@@ -31,7 +31,7 @@ services:
       - source: dash_default
         target: /etc/grafana/provisioning/dashboards/json/hs_fs_dash.json    
       - source: dash_mobility
-        target: /etc/grafana/provitioning/dashboards/json/hs_file_mobility.json
+        target: /etc/grafana/provisioning/dashboards/json/hs_file_mobility.json
       - source: dash_object
         target: /etc/grafana/provisioning/dashboards/json/hs_object.json
       - source: dash_protocol 
