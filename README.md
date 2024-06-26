@@ -13,3 +13,5 @@ Note: *It's recommended that you're on the latest version of Hammerspace (Versio
 3. You can now go to `yourdockerhost:3000` and you should see the Grafana logo. The default login and password is `admin:admin1`. 
 
 4. Click on 'Dashboards' to see your Hammespace cluster information.
+
+If you need any help, check out the #eng_grafana channel on slack.
