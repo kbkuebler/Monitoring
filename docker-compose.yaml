@@ -47,7 +47,7 @@ services:
         target: /etc/grafana/provisioning/dashboards/json/hs_object.json
       - source: dash_protocol 
         target: /etc/grafana/provisioning/dashboards/json/hs_protocol.json
-      - source: dash_file_rep
+      - source: dash_file_replication
         target: /etc/grafana/provisioning/dashboards/json/hs_file_replication.json
     
 
