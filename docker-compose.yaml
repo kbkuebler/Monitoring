@@ -13,7 +13,7 @@ services:
     command:
       - '--config.file=/etc/prometheus/prometheus.yaml'
     networks:
-      hs-network
+      - hs-network
     
 
   grafana:
