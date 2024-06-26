@@ -10,30 +10,32 @@ scrape_configs:
       node_type: prometheus
   - targets:
     - localhost:9090
+
+###Modify the following to suit your cluster. This example has a single anvil and a single DSX.    
 - job_name: cluster
   static_configs:
   - labels:
-      cluster: KBK-HOME
-      instance: KBK-HOME
+      cluster: YOUR_CLUSTER_NAME
+      instance: YOUR_CLUSTER_NAME
       node_type: clusterip
     targets:
-    - 192.168.100.5:9101
-    - 192.168.100.5:9102
-    - 192.168.100.5:9103
+    - N.N.N.N:9101
+    - N.N.N.N:9102
+    - N.N.N.N:9103
 - job_name: anvil_nodes
   static_configs:
   - labels:
-      cluster: KBK-HOME
-      instance: anvil-site-a.onaside.quest
+      cluster: YOUR_CLUSTER_NAME
+      instance: anvil-1.FQDN
       node_type: anvil
     targets:
-    - 192.168.100.5:9100
+    - N.N.N.N:9100
 - job_name: dsx_nodes
   static_configs:
   - labels:
-      cluster: JP-HS-NY
-      instance: dsx-site-a.onaside.quest
+      cluster: YOUR_CLUSTER_NAME
+      instance: dsx-1.FQDN
       node_type: dsx
     targets:
-    - 192.168.100.6:9100
-    - 192.168.100.6:9105
+    - N.N.N.N:9100
+    - N.N.N.N:9105
