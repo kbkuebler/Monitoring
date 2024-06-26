@@ -7,13 +7,11 @@ services:
     restart: unless-stopped
     volumes:
       - prometheus_data:/prometheus
+      - ./prometheus/prometheus.yaml:/etc/prometheus/prometheus.yaml
     ports:
       - "9090:9090"
     command:
       - '--config.file=/etc/prometheus/prometheus.yaml'
-    configs:
-      - source: prom_conf
-        target: ./prometheus/prometheus.yaml:/etc/prometheus/prometheus.yaml
     networks:
       - hs-network
     
@@ -52,8 +50,6 @@ services:
     
 
 configs:
-  prom_conf:
-    file: ./prometheus/prometheus.yaml
   dashboard_config:
     file: ./grafana/default.yaml
   datasource_config:
