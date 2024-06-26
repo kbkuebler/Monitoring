@@ -20,3 +20,20 @@ scrape_configs:
     - 192.168.100.5:9101
     - 192.168.100.5:9102
     - 192.168.100.5:9103
+- job_name: anvil_nodes
+  static_configs:
+  - labels:
+      cluster: KBK-HOME
+      instance: anvil-site-a.onaside.quest
+      node_type: anvil
+    targets:
+    - 192.168.100.5:9100
+- job_name: dsx_nodes
+  static_configs:
+  - labels:
+      cluster: JP-HS-NY
+      instance: dsx-site-a.onaside.quest
+      node_type: dsx
+    targets:
+    - 192.168.100.6:9100
+    - 192.168.100.6:9105
