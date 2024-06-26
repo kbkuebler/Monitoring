@@ -6,13 +6,14 @@ services:
     container_name: prometheus
     restart: unless-stopped
     volumes:
-      - ./prometheus/prometheus.yaml:/etc/prometheus/prometheus.yaml
       - prometheus_data:/prometheus
     ports:
       - "9090:9090"
     command:
       - '--config.file=/etc/prometheus/prometheus.yaml'
+    configs:
       - source: prom_conf
+        target: ./prometheus/prometheus.yaml:/etc/prometheus/prometheus.yaml
     networks:
       - hs-network
     
@@ -46,11 +47,13 @@ services:
         target: /etc/grafana/provisioning/dashboards/json/hs_object.json
       - source: dash_protocol 
         target: /etc/grafana/provisioning/dashboards/json/hs_protocol.json
-      - source: dash_replication
+      - source: dash_file_rep
         target: /etc/grafana/provisioning/dashboards/json/hs_file_replication.json
     
 
 configs:
+  prom_conf:
+    file: ./prometheus/prometheus.yaml
   dashboard_config:
     file: ./grafana/default.yaml
   datasource_config:
@@ -64,8 +67,9 @@ configs:
     file: ./grafana/dashboards/hs_object.json
   dash_protocol:
     file: ./grafana/dashboards/hs_protocol.json
-  dash_replication:
+  dash_file_replication:
     file: ./grafana/dashboards/hs_file_replication.json
+
 
 volumes:
   prometheus_data:
