@@ -9,4 +9,7 @@ Note: *It's recommended that you're on the latest version of Hammerspace (Versio
 `cluster-update --prometheus-exporters-enable`
 
 2. Once that has been done, go to folder that has the `docker-compose.yaml` file and run `docker compose up` and monitor the output. If everything has come up and is working as desired, you can `ctrl-c` and then restart with `docker compose up -d` and you should be able to demo and POC.
-3. The default login and password is `admin:admin1`
+
+3. You can now go to `yourdockerhost:3000` and you should see the Grafana logo. The default login and password is `admin:admin1`. 
+
+4. Click on 'Dashboards' to see your Hammespace cluster information.
