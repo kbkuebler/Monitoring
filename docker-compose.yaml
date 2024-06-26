@@ -45,6 +45,8 @@ services:
         target: /etc/grafana/provisioning/dashboards/json/hs_object.json
       - source: dash_protocol 
         target: /etc/grafana/provisioning/dashboards/json/hs_protocol.json
+      - source: dash_replication
+        target: /etc/grafana/provisioning/dashboards/json/hs_file_replication.json
     
 
 configs:
@@ -61,7 +63,8 @@ configs:
     file: ./grafana/dashboards/hs_object.json
   dash_protocol:
     file: ./grafana/dashboards/hs_protocol.json
-
+  dash_replication:
+    file: ./grafana/dashboards/hs_file_replication.json
 
 volumes:
   prometheus_data:
