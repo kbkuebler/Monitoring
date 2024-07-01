@@ -26,45 +26,22 @@ services:
       - "3000:3000"
     volumes:
       - grafana_data:/var/lib/grafana
+      - ./grafana/default.yaml:/etc/grafana/provisioning/dashboards/default.yaml
+#      - ./grafana/default.yaml:/etc/grafana/provisioning/dashboards/json/hs_fs_dash.json 
+      - ./grafana/dashboards/hs_fs_dash.json:/etc/grafana/provisioning/dashboards/json/hs_file_mobility.json
+      - ./grafana/dashboards/hs_object.json:/etc/grafana/provisioning/dashboards/json/hs_object.json
+      - ./grafana/dashboards/hs_file_mobility.json:/etc/grafana/provisioning/dashboards/json/hs_object.json
+      - ./grafana/datasources/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
+      - ./grafana/dashboards/hs_protocol.json:/etc/grafana/provisioning/dashboards/json/hs_protocol.json
+      - ./grafana/dashboards/hs_file_replication.json:/etc/grafana/provisioning/dashboards/json/hs_file_replication.json
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=admin!
     networks:
       - hs-network
-    configs:
-      - source: dashboard_config
-        target: /etc/grafana/provisioning/dashboards/default.yaml
-      - source: datasource_config
-        target: /etc/grafana/provisioning/datasources/datasource.yaml
-      #### Add new dashboards below
-      - source: dash_default
-        target: /etc/grafana/provisioning/dashboards/json/hs_fs_dash.json    
-      - source: dash_mobility
-        target: /etc/grafana/provisioning/dashboards/json/hs_file_mobility.json
-      - source: dash_object
-        target: /etc/grafana/provisioning/dashboards/json/hs_object.json
-      - source: dash_protocol 
-        target: /etc/grafana/provisioning/dashboards/json/hs_protocol.json
-      - source: dash_file_replication
-        target: /etc/grafana/provisioning/dashboards/json/hs_file_replication.json
-    
 
-configs:
-  dashboard_config:
-    file: ./grafana/default.yaml
-  datasource_config:
-    file: ./grafana/datasources/datasource.yaml
-  ### Match dashboards to the ones you added above
-  dash_default:
-    file: ./grafana/dashboards/hs_fs_dash.json
-  dash_mobility:
-    file: ./grafana/dashboards/hs_file_mobility.json
-  dash_object:
-    file: ./grafana/dashboards/hs_object.json
-  dash_protocol:
-    file: ./grafana/dashboards/hs_protocol.json
-  dash_file_replication:
-    file: ./grafana/dashboards/hs_file_replication.json
+ 
+
 
 
 volumes:
