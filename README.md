@@ -1,3 +1,6 @@
+
+![Screenshot_20240701_174214](https://github.com/kbkuebler/Monitoring/assets/19337069/cdcb044c-e444-4975-b116-44019b5a155c)
+
 ## Hammerspace Monitoring Stack
 
 This should help as a Promhetheus/Grafana quick start for SEs and others that just want to test things out in a non-production environment.
